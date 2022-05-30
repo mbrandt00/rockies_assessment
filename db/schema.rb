@@ -40,6 +40,9 @@ ActiveRecord::Schema.define(version: 2022_05_29_165751) do
     t.float "release_extension"
     t.float "trajectory_vertical_break"
     t.float "trajectory_zone_speed"
+    t.integer "strike"
+    t.integer "ball"
+    t.integer "in_play"
     t.index ["game_id"], name: "index_pitches_on_game_id"
     t.index ["pitcher_id"], name: "index_pitches_on_pitcher_id"
   end

@@ -13,6 +13,9 @@ class CreatePitches < ActiveRecord::Migration[5.2]
       t.float :release_extension
       t.float :trajectory_vertical_break
       t.float :trajectory_zone_speed
+      t.integer :strike
+      t.integer :ball
+      t.integer :in_play
     end
   end
 end
