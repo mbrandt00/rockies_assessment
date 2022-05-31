@@ -14,3 +14,11 @@
 
  // Custom bootstrap 
  @import "bootstrap";
+ .row { 
+    width: 100%;
+    display: block;
+    }
+.col {
+    widht: 20%;
+    display: inline-block;
+}

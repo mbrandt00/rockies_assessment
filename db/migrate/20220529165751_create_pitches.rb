@@ -16,6 +16,8 @@ class CreatePitches < ActiveRecord::Migration[5.2]
       t.integer :strike
       t.integer :ball
       t.integer :in_play
+      t.string :play_event_description
+      t.string :at_bat_inning
     end
   end
 end

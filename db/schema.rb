@@ -43,6 +43,8 @@ ActiveRecord::Schema.define(version: 2022_05_29_165751) do
     t.integer "strike"
     t.integer "ball"
     t.integer "in_play"
+    t.string "play_event_description"
+    t.string "at_bat_inning"
     t.index ["game_id"], name: "index_pitches_on_game_id"
     t.index ["pitcher_id"], name: "index_pitches_on_pitcher_id"
   end

@@ -1,0 +1,61 @@
+<div class="container">
+  <h1>Details for <%= @pitcher.pitcher_name%> </h1>
+  <div class="row">
+    <h3>Overall Pitch Statistics across (<%= @pitcher.stats_by_game.length%>) game(s) </h3>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Pitch</th>
+          <th scope="col">Release Speed</th>
+          <th scope="col">Release Extension</th>
+          <th scope="col">Strikes</th>
+          <th scope="col">Balls</th>
+          <th scope="col">In Play</th>
+        </tr>
+      </thead>
+      <% @pitcher.pitch_type_average.each do |pitch| %>
+      <tbody>
+        <tr>
+            <td><%= pitch.pitch_type%></td>
+            <td><%=pitch.release_speed.round(2) %> mph</td>
+            <td><%=pitch.release_extension.round(2)%> inches</td>
+            <td><%= "#{pitch.strikes}/#{pitch.total_pitches} 
+                (#{number_to_percentage(pitch.strikes.to_f/pitch.total_pitches*100, precision: 2)})"%> </td>
+            <td><%= "#{pitch.balls}/#{pitch.total_pitches} 
+                (#{number_to_percentage(pitch.balls.to_f/pitch.total_pitches*100, precision: 2)})"%> </td>
+            <td><%= "#{pitch.in_play}/#{pitch.total_pitches} 
+                (#{number_to_percentage(pitch.in_play.to_f/pitch.total_pitches*100, precision: 2)})"%> </td>
+          <%end%>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <% @pitcher.stats_by_game.each do |game| %> 
+  <div class="card" style="width: 100%;">
+    <div class="card-body">
+      <h5 class="card-title"><%= "#{game.home_team} vs. #{game.away_team} on #{game.time.strftime("%b %d, %Y")} @ #{game.venue_name}"%></h5>
+      <p class="card-text">
+        <div class="row">
+          <div class="col-sm d-flex justify-content-left">
+            <h6>Pitch Statistics</h6>
+              <ul>
+                <li><strong> Strikes: </strong><%=game.strikes %> </li>
+                <li><strong> Balls: </strong><%=game.balls%> </li>
+                <li><strong> In Play: </strong><%=game.in_play%> </li>
+              </ul>
+            </div>
+            <div class="col-sm d-flex justify-content-left">
+              <h6>Pitch Outcomes</h6>
+              <ul>
+              <%game.event_description_count(@pitcher).each do |event, count| %>
+                <li><strong> <%=event%>(s):</strong> <%=count%> </li>
+                <%end%>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </p>
+    </div>
+    <%end%>
+    <%= link_to 'Back', :back %>
+  </div>
