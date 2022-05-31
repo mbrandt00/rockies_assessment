@@ -32,7 +32,9 @@ task :pitches, [:filename] => :environment do
         strike = game_info['is_strike']
         ball = game_info['is_ball']
         in_play = game_info['is_in_play']
-        a = Pitch.create!(game_id: game.id, pitcher_id: pitcher.id, pitch_type_description: pitch_type_description, pitch_hand: pitch_hand, batter: batter, bat_side: bat_side, call_description: call_description, release_angle: release_angle, release_speed: release_speed, release_extension: release_extension, trajectory_vertical_break: trajectory_vertical_break, trajectory_zone_speed: trajectory_zone_speed, strike: strike, ball: ball, in_play: in_play)
+        at_bat_inning = game_info['at_bat_index'] + game_info['play_inning']
+        play_event_description = game_info['play_event_description']
+        a = Pitch.create!(game_id: game.id, pitcher_id: pitcher.id, pitch_type_description: pitch_type_description, pitch_hand: pitch_hand, batter: batter, bat_side: bat_side, call_description: call_description, release_angle: release_angle, release_speed: release_speed, release_extension: release_extension, trajectory_vertical_break: trajectory_vertical_break, trajectory_zone_speed: trajectory_zone_speed, strike: strike, ball: ball, in_play: in_play, at_bat_inning: at_bat_inning, play_event_description: play_event_description)
     end
     # t2 = Time.now
     # p(t2 - t1) # in seconds
