@@ -31,6 +31,7 @@
     </table>
   </div>
   <% @pitcher.stats_by_game.each do |game| %> 
+  <div id="<%=game.id%>">
   <div class="card" style="width: 100%;">
     <div class="card-body">
       <h5 class="card-title"><%= "#{game.home_team} vs. #{game.away_team} on #{game.time.strftime("%b %d, %Y")} @ #{game.venue_name}"%></h5>
@@ -55,6 +56,7 @@
           </div>
         </div>
       </p>
+    </div>
     </div>
     <%end%>
     <%= link_to 'Back', :back %>
