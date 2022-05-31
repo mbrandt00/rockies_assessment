@@ -185,6 +185,8 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    shoulda-matchers (5.1.0)
+      activesupport (>= 5.2.0)
     simplecov (0.21.2)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
@@ -240,6 +242,7 @@ DEPENDENCIES
   rails (~> 5.2.7)
   rspec-rails
   sass-rails (~> 5.0)
+  shoulda-matchers
   simplecov
   spring
   spring-watcher-listen (~> 2.0.0)
