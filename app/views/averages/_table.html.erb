@@ -1,0 +1,28 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Name (Last, First)</th>
+      <th scope="col">Release Speed</th>
+      <th scope="col">Release Extension</th>
+      <th scope="col">Strikes</th>
+      <th scope="col">Balls</th>
+      <th scope="col">In Play</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% object.each do |pitcher| %>
+    <tr>
+        <td><%=link_to(pitcher.pitcher_name, average_path(pitcher.id))%></td>
+        <td><%=pitcher.release_speed.round(2) %> mph</td>
+        <td><%=pitcher.release_extension.round(2)%> inches</td>
+        <td><%= "#{pitcher.strikes}/#{pitcher.total_pitches} 
+            (#{number_to_percentage(pitcher.strikes.to_f/pitcher.total_pitches*100, precision: 2)})"%> </td>
+        <td><%= "#{pitcher.balls}/#{pitcher.total_pitches} 
+            (#{number_to_percentage(pitcher.balls.to_f/pitcher.total_pitches*100, precision: 2)})"%> </td>
+        <td><%= "#{pitcher.in_play}/#{pitcher.total_pitches} 
+            (#{number_to_percentage(pitcher.in_play.to_f/pitcher.total_pitches*100, precision: 2)})"%> </td>
+      <%end%>
+    </tr>
+  </tbody>
+</table>
+</div>
