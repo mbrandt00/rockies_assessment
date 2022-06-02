@@ -5,7 +5,6 @@ WORKDIR /rockies_challenge
 COPY Gemfile /rockies_challenge/Gemfile
 COPY Gemfile.lock /rockies_challenge/Gemfile.lock
 RUN bundle install
-RUN rails db:{drop,create,migrate} pitches
 # Add a script to be executed every time the container starts.
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
