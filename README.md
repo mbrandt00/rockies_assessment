@@ -3,7 +3,9 @@
 This is a basic pitch tracking app to assess pitch counts, strike percentages, release speed etc of various pitchers on the Colorado Rockies. 
 
 ## Run Instructions 
+This should take no longer to get a fully functional app with 10% of the data loaded in. To get 100% of the data, I estimate ~30 minutes. 
  - Clone down the repository 
+ - Ensure that docker is running locally
  - Run `docker-compose run web bash`
  - In bash run `rails db:{create,migrate} pitches` (**this step will take a long time.** The console output will print out what percent of the CSV has been parsed in. Feel free to terminate early.)
  - Exit the bash session
