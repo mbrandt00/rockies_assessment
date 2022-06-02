@@ -5,7 +5,7 @@ task :pitches, [:filename] => :environment do
     puts "Loading CSV Data"
     rockies = Team.create(team_name: 'Colorado Rockies')
     i = 1
-    j =  1
+    j =  0
     CSV.foreach('./rockies_full_stack_developer_project_data.csv', headers: true) do |row|
         j+= 10 if i % 3200 == 0 
         puts "#{j}% done" if i % 3200 == 0
