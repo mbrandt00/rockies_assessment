@@ -4,8 +4,9 @@ RSpec.describe 'Averages Index' do
     before :each do 
         @game_1 = Game.create(home_team: 'Rockies', away_team: 'Dodgers', venue_name: 'Coors', time: Time.now)
         @game_2 = Game.create(home_team: 'Rockies', away_team: 'Giants', venue_name: 'Coors', time: Time.now)
-        @pitcher_1 = Pitcher.create(pitcher_name: 'pitcher_1')
-        @pitcher_2 = Pitcher.create(pitcher_name: 'pitcher_2')
+        rockies = Team.create(team_name: 'Colorado Rockies')
+        @pitcher_1 = Pitcher.create(pitcher_name: 'pitcher_1', team: rockies)
+        @pitcher_2 = Pitcher.create(pitcher_name: 'pitcher_2', team: rockies)
         @pitch_1 = Pitch.create(pitch_type_description: "Changeup", game_id: @game_1.id, pitcher_id: @pitcher_1.id, strike: 1, at_bat_inning: "01", release_extension: 5, release_speed: 100.0)
         @pitch_2 = Pitch.create(pitch_type_description: "Changeup", game_id: @game_1.id, pitcher_id: @pitcher_1.id, strike: 1, at_bat_inning: "02", release_extension: 3, release_speed: 40.0, ball: 1)
         @pitch_3 = Pitch.create(pitch_type_description: "Changeup", game_id: @game_1.id, pitcher_id: @pitcher_1.id, ball: 1, at_bat_inning: "02", release_extension: 3, release_speed: 50.0)
