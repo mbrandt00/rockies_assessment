@@ -6,10 +6,11 @@ RSpec.describe Game do
     end
     describe 'instance methods' do 
         it '#event_description_count' do 
+            @rockies = Team.create(team_name: 'Colorado Rockies')
             game_1 = Game.create(home_team: 'Rockies', away_team: 'Dodgers', venue_name: 'Coors')
             game_2 = Game.create(home_team: 'Rockies', away_team: 'Diamondbacks', venue_name: 'Coors')
-            pitcher_1 = Pitcher.create(pitcher_name: 'pitcher_1')
-            pitcher_2 = Pitcher.create(pitcher_name: 'pitcher_2')
+            pitcher_1 = Pitcher.create(pitcher_name: 'pitcher_1', team: @rockies)
+            pitcher_2 = Pitcher.create(pitcher_name: 'pitcher_2', team: @rockies)
             pitch_1 = Pitch.create(pitch_type_description: "Sinker", game_id: game_1.id, pitcher_id: pitcher_1.id, play_event_description: "Walk", at_bat_inning: "01")
             pitch_2 = Pitch.create(pitch_type_description: "Sinker", game_id: game_1.id, pitcher_id: pitcher_1.id, play_event_description: "Strikeout", at_bat_inning: "02")
             pitch_3 = Pitch.create(pitch_type_description: "Sinker", game_id: game_1.id, pitcher_id: pitcher_1.id, play_event_description: "Walk", at_bat_inning: "03")

@@ -2,11 +2,16 @@ require 'csv'
 
 desc 'Import Pitches' 
 task :pitches, [:filename] => :environment do
-    # t1 = Time.now
+    puts "Loading CSV Data"
+    rockies = Team.create(team_name: 'Colorado Rockies')
+    i = 1
+    j =  0
     CSV.foreach('./rockies_full_stack_developer_project_data.csv', headers: true) do |row|
+        j+= 10 if i % 3200 == 0 
+        puts "#{j}% done" if i % 3200 == 0
         game_info = row.to_h
         # create/find pitcher
-        pitcher = Pitcher.where(pitcher_name: game_info['pitcher_name']).empty? ? Pitcher.create!(pitcher_name: game_info['pitcher_name']) : Pitcher.where(pitcher_name: game_info['pitcher_name']).first
+        pitcher = Pitcher.where(pitcher_name: game_info['pitcher_name']).empty? ? Pitcher.create!(pitcher_name: game_info['pitcher_name'], team: rockies) : Pitcher.where(pitcher_name: game_info['pitcher_name']).first
         # find/create game from task above
         game_id = game_info['game_pk'].to_i
         if Game.where(game_id: game_id).empty?
@@ -35,7 +40,6 @@ task :pitches, [:filename] => :environment do
         at_bat_inning = game_info['at_bat_index'] + game_info['play_inning']
         play_event_description = game_info['play_event_description']
         a = Pitch.create!(game_id: game.id, pitcher_id: pitcher.id, pitch_type_description: pitch_type_description, pitch_hand: pitch_hand, batter: batter, bat_side: bat_side, call_description: call_description, release_angle: release_angle, release_speed: release_speed, release_extension: release_extension, trajectory_vertical_break: trajectory_vertical_break, trajectory_zone_speed: trajectory_zone_speed, strike: strike, ball: ball, in_play: in_play, at_bat_inning: at_bat_inning, play_event_description: play_event_description)
+        i +=1
     end
-    # t2 = Time.now
-    # p(t2 - t1) # in seconds
 end

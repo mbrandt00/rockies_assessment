@@ -1,5 +1,5 @@
 <div class = "container">
-  <h1>Pitcher Averages by Pitch (<%= @type%>)</h1>
+  <h1><%= @type%> Averages by Pitcher </h1>
  <br />
     <div class="btn-group radio-row" role="group" aria-label="Basic radio toggle button group">
       <%= form_with url: "/change_pitch_type", method: :post do |f| %> 

@@ -2,14 +2,11 @@ class AveragesController < ApplicationController
     def index 
         if params[:type].present? 
             @type = params[:type]
-            if params[:name].present?
-                @averages = Pitcher.averages(params[:type]).search(params[:name])
-            else 
-                @averages = Pitcher.averages(params[:type])
-            end
+            @averages = params[:name].present? ? Pitcher.averages(params[:type]).search(params[:name]) : Pitcher.averages(params[:type])
         else 
-            @averages = Pitcher.averages('Changeup')
+            # default type
             @type = 'Changeup'
+            @averages = params[:name].present? ? Pitcher.averages('Changeup').search(params[:name]) : Pitcher.averages('Changeup')
         end  
     end
 

@@ -1,6 +1,7 @@
 class Pitcher < ApplicationRecord
     has_many :pitches
     has_many :games, through: :pitches
+    belongs_to :team
 
     def self.averages(pitch_type = 'Changeup')
         joins(:pitches).
